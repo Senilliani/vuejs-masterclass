@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2>Home Page</h2>
-    <RouterLink to="/projects">Go to Projects</RouterLink>
+    <h2>Páginas de Proyectos</h2>
+    <RouterLink to="/">Ir a la Home</RouterLink>
   </div>
 </template>
 

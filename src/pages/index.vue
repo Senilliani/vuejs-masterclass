@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2>Projects Page</h2>
-    <RouterLink to="/">Go to Home</RouterLink>
+    <h2>Home Page</h2>
+    <RouterLink :to="{ name: '/projects/[id]', params: { id: 3 } }">IR al proyecto 3</RouterLink>
   </div>
 </template>
 
