@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h2>Páginas de Proyectos</h2>
+    <h2>Páginas de TAREAS</h2>
     <RouterLink to="/">Ir a la Home</RouterLink>
     <ul>
-      <li v-for="project in projects" :key="project.id">
-        {{ project.name }}
+      <li v-for="task in tasks" :key="task.id">
+        {{ task.name }}
       </li>
     </ul>
   </div>
@@ -16,16 +16,16 @@ import { mysupabase } from '@/lib/supabaseClient';
 import { ref } from 'vue';
 import type { Tables } from '../../../database/types'
 
-const projects = ref<Tables<'projects'>[] | null>();
+const tasks = ref<Tables<'tasks'>[] | null>();
 
 const f = async () => {
-  const { data, error } = await mysupabase.from('projects').select()
+  const { data, error } = await mysupabase.from('tasks').select()
 
   if (error) console.log(error)
 
-  projects.value = data;
+  tasks.value = data;
 
-  console.log(projects.value)
+  console.log(tasks.value)
   return data
 }
 
