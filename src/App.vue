@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import TopNavbar from './components/ui/Layout/TopNavbar.vue';
-import Sidebar from './components/ui/Layout/Sidebar.vue';
+import AuthLayout from './components/ui/Layout/main/AuthLayout.vue';
 </script>
 
 <template>
-  <Sidebar />
-  <div class="flex flex-col lg:ml-52 ml-16 transition-[margin]">
-    <TopNavbar />
-    <main>
-      <RouterView />
-    </main>
-  </div>
+  <!-- quiero limpiar el app, que tenga todo otro componente -->
+  <!-- para quienes estan logueados que vean el sidebar (ir a mis proyectos) pero los que no lo vean -->
+  <AuthLayout>
+    <RouterView />
+  </AuthLayout>
 </template>
