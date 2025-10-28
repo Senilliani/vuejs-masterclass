@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Home Page</h2>
+    <h1>Ruta encontrada para cuando elijas una task en particular</h1>
   </div>
 </template>
 

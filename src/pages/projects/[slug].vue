@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Proyecto {{ route.params?.id }}</h2>
+    <h2>Proyecto {{ route.params?.slug }}</h2>
   </div>
 </template>
 
