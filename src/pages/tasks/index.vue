@@ -22,7 +22,7 @@ const f = async () => {
   return data
 }
 
-f()
+await f()
 
 const columns: ColumnDef<Tables<'tasks'>>[] = [
   {
