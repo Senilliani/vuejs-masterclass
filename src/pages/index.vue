@@ -5,6 +5,10 @@
 </template>
 
 <script setup lang="ts">
+import { usePageStore } from '@/stores/page';
+
+usePageStore().pageData.title = 'HOME Page'
+
 </script>
 
 <style scoped></style>

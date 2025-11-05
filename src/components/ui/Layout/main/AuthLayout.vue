@@ -2,6 +2,8 @@
 import Sidebar from '../Sidebar.vue';
 import TopNavbar from '../TopNavbar.vue';
 
+const lifeStore = usePageStore()
+
 </script>
 
 <template>
@@ -10,7 +12,7 @@ import TopNavbar from '../TopNavbar.vue';
     <TopNavbar />
     <main class="flex flex-col flex-1 gap-4 p-4 lg:gap-6 lg:p-6">
       <div class="flex items-center">
-        <h1 class="text-lg font-semibold md:text-2xl">Page title</h1>
+        <h1 class="text-lg font-semibold md:text-2xl">{{ lifeStore.pageData.title }}</h1>
       </div>
       <!-- <RouterView /> esto es la parte que está debajo del page title reemplazo por slot aquí porque este lo sigue teniendo el padre-->
       <slot></slot>
