@@ -12,13 +12,19 @@ import { RouterLink } from 'vue-router';
 const tasks = ref<Tables<'tasks'>[] | null>();
 
 const f = async () => {
-  const { data, error } = await mysupabase.from('tasks').select()
-
+  const { data, error } = await mysupabase.from('tasks').select(`
+  *,
+  projects (
+  id,
+  name,
+  slug
+  )
+`)
+  console.log(data)
   if (error) console.log(error)
 
   tasks.value = data;
 
-  console.log(tasks.value)
   return data
 }
 
@@ -29,7 +35,7 @@ const columns: ColumnDef<Tables<'tasks'>>[] = [
     accessorKey: 'name',
     header: () => h('div', { class: 'text-left' }, 'Name'),
     cell: ({ row }) => {
-      return h(RouterLink, { to: `/tasks/${row.original.id}`, class: 'text-left font-medium hover:bg-muted block w-full' }, row.getValue('name'))
+      return h(RouterLink, { to: `/tasks/${row.original.id}`, class: 'text-left font-medium block w-full' }, row.getValue('name'))
     },
   },
   {
@@ -40,17 +46,17 @@ const columns: ColumnDef<Tables<'tasks'>>[] = [
     },
   },
   {
-    accessorKey: 'due_date',
+    accessorKey: 'due date',
     header: () => h('div', { class: 'text-left' }, 'Due_date'),
     cell: ({ row }) => {
       return h('div', { class: 'text-left font-medium' }, row.getValue('due_date'))
     },
   },
   {
-    accessorKey: 'project_id',
+    accessorKey: 'projects',
     header: () => h('div', { class: 'text-left' }, 'Project'),
     cell: ({ row }) => {
-      return h('div', { class: 'text-left font-medium' }, row.getValue('project_id'))
+      return h(RouterLink, { to: `/projects/${row.original.projects.slug}`, class: 'text-left font-medium block w-full' }, row.getValue('projects').name)
     },
   },
   {
