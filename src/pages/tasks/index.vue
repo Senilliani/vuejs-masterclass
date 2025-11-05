@@ -46,8 +46,8 @@ const columns: ColumnDef<Tables<'tasks'>>[] = [
     },
   },
   {
-    accessorKey: 'due date',
-    header: () => h('div', { class: 'text-left' }, 'Due_date'),
+    accessorKey: 'due_date',
+    header: () => h('div', { class: 'text-left' }, 'Due date'),
     cell: ({ row }) => {
       return h('div', { class: 'text-left font-medium' }, row.getValue('due_date'))
     },
