@@ -8,11 +8,9 @@ import type { Tables } from '../../../database/types'
 import type { ColumnDef } from '@tanstack/vue-table';
 import DataTable from '@/components/ui/data-table/DataTable.vue';
 import { RouterLink } from 'vue-router';
+import type { QueryData } from '@supabase/supabase-js';
 
-const tasks = ref<Tables<'tasks'>[] | null>();
-
-const f = async () => {
-  const { data, error } = await mysupabase.from('tasks').select(`
+const tasksWithProjectsQuery = mysupabase.from('tasks').select(`
   *,
   projects (
   id,
@@ -20,7 +18,14 @@ const f = async () => {
   slug
   )
 `)
-  console.log(data)
+
+type TasksWithProjects = QueryData<typeof tasksWithProjectsQuery>
+
+const tasks = ref<TasksWithProjects | null>();
+
+const f = async () => {
+  const { data, error } = await tasksWithProjectsQuery
+
   if (error) console.log(error)
 
   tasks.value = data;
@@ -30,7 +35,7 @@ const f = async () => {
 
 await f()
 
-const columns: ColumnDef<Tables<'tasks'>>[] = [
+const columns: ColumnDef<TasksWithProjects[0]>[] = [
   {
     accessorKey: 'name',
     header: () => h('div', { class: 'text-left' }, 'Name'),
@@ -56,7 +61,16 @@ const columns: ColumnDef<Tables<'tasks'>>[] = [
     accessorKey: 'projects',
     header: () => h('div', { class: 'text-left' }, 'Project'),
     cell: ({ row }) => {
-      return h(RouterLink, { to: `/projects/${row.original.projects.slug}`, class: 'text-left font-medium block w-full' }, row.getValue('projects').name)
+      return row.original.projects
+        ? h(
+          RouterLink,
+          {
+            to: `/projects/${row.original.projects.slug}`,
+            class: 'text-left font-medium block w-full'
+          },
+          () => row.original.projects?.name
+        )
+        : ''
     },
   },
   {

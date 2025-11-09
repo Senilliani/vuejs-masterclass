@@ -26,7 +26,6 @@ const f = async () => {
 
   projects.value = data;
 
-  console.log(projects.value)
   return data
 }
 
