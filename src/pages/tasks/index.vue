@@ -7,6 +7,8 @@ import DataTable from '@/components/ui/data-table/DataTable.vue';
 import { tasksWithProjectsQuery, type TasksWithProjects } from '@/utils/supaQueries';
 import { columns } from '@/utils/tableColumns/tasksColumns'
 
+usePageStore().pageData.title = 'TASKS Page'
+
 const tasks = ref<TasksWithProjects | null>();
 
 const f = async () => {
