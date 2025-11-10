@@ -11,7 +11,7 @@ export const columns: ColumnDef<Projects[0]>[] = [
         RouterLink,
         {
           to: `/projects/${row.original.slug}`,
-          class: 'text-left font-medium hover:bg-muted block w-full',
+          class: 'text-left font-medium block w-full',
         },
         () => row.getValue('name'),
       )
