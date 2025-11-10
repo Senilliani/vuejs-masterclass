@@ -29,14 +29,14 @@
     <TableRow>
       <TableHead> Collaborators </TableHead>
       <TableCell>
-        <!-- <div class="flex">
+        <div class="flex">
           <Avatar class="-mr-4 border border-primary hover:scale-110 transition-transform" v-for="n in 5" :key="n">
             <RouterLink class="w-full h-full flex items-center justify-center" to="">
               <AvatarImage src="" alt="" />
               <AvatarFallback> </AvatarFallback>
             </RouterLink>
           </Avatar>
-        </div> -->
+        </div>
       </TableCell>
     </TableRow>
     <TableRow class="hover:bg-transparent">
@@ -68,10 +68,3 @@
     </TableRow>
   </Table>
 </template>
-
-<script setup lang="ts">
-const route = useRoute()
-
-</script>
-
-<style scoped></style>
